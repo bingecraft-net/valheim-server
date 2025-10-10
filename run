@@ -1,6 +1,14 @@
 #!/usr/bin/env zsh
 
+if [ -f cidfile ] ; then
+  echo cidfile exists
+  exit 1
+fi
+
+mkdir -p data config
+
 podman run -d \
+  --cidfile cidfile \
   --name valheim-server \
   --cap-add=sys_nice \
   --stop-timeout 120 \

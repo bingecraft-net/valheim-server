@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+if [ ! -f cidfile ] ; then
+  echo cidfile does not exist
+  exit 1
+fi
