@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+
+podman run -d \
+  --name valheim-server \
+  --cap-add=sys_nice \
+  --stop-timeout 120 \
+  -p 2456-2457:2456-2457/udp \
+  -v $HOME/valheim-server/config:/config \
+  -v $HOME/valheim-server/data:/opt/valheim \
+  -e SERVER_NAME="My Server" \
+  -e WORLD_NAME="Neotopia" \
+  -e SERVER_PASS="" \
+  ghcr.io/lloesche/valheim-server
