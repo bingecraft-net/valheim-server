@@ -5,7 +5,11 @@ if [ -f cidfile ] ; then
   exit 1
 fi
 
-mkdir -p data config
+CONFIG=${CONFIG:-$HOME/valheim-server/config}
+DATA=${DATA:-$HOME/valheim-server/data}
+SERVER_PASS=${SERVER_PASS:-pickl3s}
+
+mkdir -p $CONFIG/worlds $DATA
 
 podman run -d \
   --cidfile cidfile \
@@ -13,9 +17,9 @@ podman run -d \
   --cap-add=sys_nice \
   --stop-timeout 120 \
   -p 2456-2457:2456-2457/udp \
-  -v $HOME/valheim-server/config:/config \
-  -v $HOME/valheim-server/data:/opt/valheim \
-  -e SERVER_NAME="My Server" \
-  -e WORLD_NAME="Neotopia" \
-  -e SERVER_PASS="" \
+  -v $CONFIG:/config \
+  -v $DATA:/opt/valheim \
+  -e SERVER_NAME="Bingecraft" \
+  -e WORLD_NAME="Revolution" \
+  -e SERVER_PASS="$SERVER_PASS" \
   ghcr.io/lloesche/valheim-server
