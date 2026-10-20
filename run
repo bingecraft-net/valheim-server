@@ -22,4 +22,4 @@ podman run -d \
   -e SERVER_NAME="Bingecraft" \
   -e WORLD_NAME="Revolution" \
   -e SERVER_PASS="$SERVER_PASS" \
-  ghcr.io/lloesche/valheim-server
+  ghcr.io/lloesche/valheim-server:sha-20e6258
